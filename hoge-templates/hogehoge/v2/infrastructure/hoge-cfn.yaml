@@ -1,0 +1,36 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: ---
+Mappings:
+  SubnetConfig:
+    VPC:
+      CIDR: '{{ environment.inputs.vpc_cidr}}' 
+    SUBNET:
+      CIDR: '{{ environment.inputs.subnet_cidr}}' 
+Resources: 
+  myVPC:
+    Type: AWS::EC2::VPC
+    Properties:
+      CidrBlock: !FindInMap ['SubnetConfig', 'VPC', 'CIDR']
+      EnableDnsSupport: false
+      EnableDnsHostnames: false
+      Tags:
+        - Key: keyname
+          Value: value
+        - Key: Name
+          Value: hoge-vpc
+  subnetName:
+    Type: AWS::EC2::Subnet
+    Properties:
+      AvailabilityZone: !Join
+        - ''
+        - - !Ref 'AWS::Region'
+          - 'a'
+      VpcId: !Ref myVPC
+      CidrBlock: !FindInMap ['SubnetConfig', 'SUBNET', 'CIDR']
+      Tags:
+        - Key: Name
+          Value: hoge-vpc
+        - Key: AddTag
+          Value: hoge-tag
+        - Key: AddTag2
+          Value: hoge-tag2
