@@ -30,7 +30,7 @@ Resources:
       Tags:
         - Key: Name
           Value: hoge-vpc
-        # - Key: AddTag
-        #   Value: hoge-tag
-        # - Key: AddTag2
-        #   Value: hoge-tag2
+        - Key: AddTag
+          Value: hoge-tag
+        - Key: AddTag2
+          Value: hoge-tag2
