@@ -1,5 +1,0 @@
-infrastructure:
-  templates:
-    - file: "hoge-cfn.yaml"
-      rendering_engine: jinja
-      template_language: cloudformation
